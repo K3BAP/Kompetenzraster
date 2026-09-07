@@ -1,0 +1,67 @@
+{
+  "schemaVersion" : 1,
+  "name" : "Sachunterricht – Grundschule",
+  "fach" : "Sachunterricht",
+  "quelle" : "Teilrahmenplan Sachunterricht, Rahmenplan Grundschule Rheinland-Pfalz (Ministerium für Bildung, Januar 2005/2015). Aus dem gescannten Original per Texterkennung gewonnen und redaktionell geprüft; gegliedert bis zur Ebene der Oberkompetenzen.",
+  "hinweis" : "Der Teilrahmenplan gliedert den Sachunterricht in fünf Erfahrungsbereiche mit je einer Perspektive. Im Unterricht sollen die Perspektiven nicht isoliert, sondern mehrperspektivisch verknüpft werden.",
+  "kompetenzen" : [
+    {
+      "titel" : "Natürliche Phänomene und Gegebenheiten – Perspektive Natur",
+      "code" : "I",
+      "kinder" : [
+        { "titel" : "Naturphänomene sachorientiert wahrnehmen, beobachten, benennen und beschreiben", "beschreibung" : "Erlebte und arrangierte Phänomene gezielt beobachten und beschreiben, „unsichtbare“ Kräfte erfahren, bei Unterrichtsgängen die Natur erforschen, in Medien Sachinformationen recherchieren." },
+        { "titel" : "Ausgewählte Naturphänomene mit Hilfe von fachlich gesichertem Wissen und Modellvorstellungen erklären können", "beschreibung" : "Gesetzmäßigkeiten erforschen und anwenden, Experimente planen, durchführen und auswerten, das Teilchen-Modell als Erklärungsmuster kennenlernen." },
+        { "titel" : "Belebte und unbelebte Natur unterscheiden", "beschreibung" : "Wirkungen von Kräften auf belebte und unbelebte Natur kennenlernen, Eigenschaften von Stoffen und ihre Veränderung beobachten, Kennzeichen des Lebendigen entdecken." },
+        { "titel" : "Einen respektvollen Umgang mit der Natur anstreben", "beschreibung" : "Die Abhängigkeit des Menschen von der Natur erfahren, über Sinn und Schutz von Biotopen nachdenken und Verantwortung übernehmen, die Energiequelle Natur kennenlernen." },
+        { "titel" : "Mit Lebewesen achtsam umgehen", "beschreibung" : "Die unterschiedlichen Bedürfnisse von Menschen, Pflanzen und Tieren kennen und beachten, Nahrungsketten recherchieren, Entwicklungen dokumentieren." },
+        { "titel" : "Den eigenen Körper kennen und sorgsam mit ihm umgehen", "beschreibung" : "Körperfunktionen und -rhythmen sowie die Bedeutung von Ernährung und Bewegung erforschen, Unfallschutz beachten, Jungen und Mädchen in ihrer Verschiedenheit erkennen und respektieren." }
+      ]
+    },
+    {
+      "titel" : "Ich und andere – Perspektive Gesellschaft",
+      "code" : "II",
+      "kinder" : [
+        { "titel" : "Gemeinsame und unterschiedliche Interessen, Wünsche, Bedürfnisse und Gefühle von Menschen erkennen und respektvoll erforschen können", "beschreibung" : "Gefühle und Bedürfnisse wahrnehmen und die anderer respektieren, sich eigener Einstellungen bewusst werden, Rituale und Regeln für das Zusammenleben finden, Empathiefähigkeit entwickeln." },
+        { "titel" : "Sich in die Rolle und in die Situation anderer Menschen hineinversetzen, um deren Handlungen, Vorstellungen, Ansichten und Gefühle besser zu verstehen" },
+        { "titel" : "Einflüsse auf die eigene Entwicklung und auf die Entwicklung anderer berücksichtigen", "beschreibung" : "Verschiedene Formen von „Familie“ kennenlernen, Aufgaben innerhalb der Familie übernehmen, Einflüsse von Freundschaften reflektieren." },
+        { "titel" : "Die Konsumangebote der Umwelt reflektiert nutzen", "beschreibung" : "Den eigenen Medienkonsum und die Bedeutung von Moden reflektieren, Konsumgüter als Mittel sozialer Verständigung erkennen, Kosten und Nutzen abwägen." },
+        { "titel" : "Auswirkungen der arbeitsteiligen Herstellung von Produkten und Dienstleistungen auf das eigene Leben und das anderer erkennen", "beschreibung" : "Arbeitsteilig ein gemeinsames Produkt erstellen, eigene Berufswünsche reflektieren, Arbeitsstätten in der Region kennenlernen, die Bedeutung von Arbeit und Berufen erkennen." },
+        { "titel" : "Bedeutung von Kulturen, Religionen, Traditionen und Familie für die eigene Sinn- und Wertorientierung nachvollziehen und die grundlegenden Menschenrechte kennen, verstehen und achten", "beschreibung" : "Einfluss verschiedener Kulturen auf den eigenen Lebensbereich wahrnehmen, wissen und respektieren, dass alle Menschen die gleichen Rechte haben." },
+        { "titel" : "Aufgaben und Arbeitsweisen ausgewählter öffentlicher Einrichtungen erkunden und beschreiben können", "beschreibung" : "Den Arbeitsplatz „Schule“ erforschen und Mitverantwortung wahrnehmen, öffentliche Institutionen der Region erkunden und nutzen." },
+        { "titel" : "Informationen über sozial bedeutsame Ereignisse und Einrichtungen selbstständig ermitteln, bewerten und darstellen", "beschreibung" : "Medien als Informationsquelle nutzen und die Relativität ihrer Aussagen erkennen, Zwecke medialer Aussagen unterscheiden und ihre Wirkung einschätzen." },
+        { "titel" : "Mitbestimmungsmöglichkeiten für die Gestaltung des Zusammenlebens kennen, erkennen und angemessen nutzen", "beschreibung" : "Die Bedeutung demokratischer Instanzen auf schulischer und öffentlicher Ebene kennen und sich aktiv beteiligen." },
+        { "titel" : "Die unterschiedlichen Interessen und Konflikte in einer Gruppe wahrnehmen, reflektieren und gemeinsame Lösungen finden", "beschreibung" : "Konflikte analysieren und gerecht lösen, mit anderen kooperieren und Kompromisse eingehen, einen respektvollen und solidarischen Umgang pflegen." }
+      ]
+    },
+    {
+      "titel" : "Bebaute und gestaltete Umwelt – Perspektive Technik",
+      "code" : "III",
+      "kinder" : [
+        { "titel" : "Ausgewählte technische Verfahrensweisen kennen und anwenden", "beschreibung" : "Einfache Werkzeuge und Vorrichtungen sachgerecht nutzen und Sicherheitsaspekte beachten, Materialien sach- und umweltgerecht verwenden." },
+        { "titel" : "Ausgewählte technische Anwendungen erkunden, erklären und ihre Auswirkungen auf die Lebensgestaltung reflektieren können", "beschreibung" : "Eigene technische Verfahren erproben, Geräte demontieren und montieren, Konstruktionen vergleichen und bewerten, alte und neue Werkzeuge und Verfahren kennenlernen, Transport, Wohnen und Nachrichtenübermittlung zu verschiedenen Zeiten vergleichen." },
+        { "titel" : "Erwünschte und unerwünschte Technikfolgen anhand ausgewählter Beispiele darstellen und bewerten", "beschreibung" : "Folgen menschlicher Eingriffe in die Natur kennen und bewerten, Konsequenzen technischer Entwicklungen sehen und bewerten." }
+      ]
+    },
+    {
+      "titel" : "Umgebungen erkunden und gestalten – Perspektive Raum",
+      "code" : "IV",
+      "kinder" : [
+        { "titel" : "Räume erkunden, bewusst wahrnehmen und sich in ihnen orientieren", "beschreibung" : "Raumwahrnehmung nach Lagebeziehungen differenzieren, Räume in ihren politischen Grenzen kennen, Räume mit Plänen, Karten und Kompass erschließen, Entfernungen einschätzen, öffentliche und private sowie virtuelle Räume unterscheiden." },
+        { "titel" : "Räume als natürliche und gestaltete Lebensgrundlage verstehen und nutzen", "beschreibung" : "Wirkungen von Kräften in der Naturlandschaft erkunden, erforschen wie der Mensch Räume verändert und nutzt, prägende Merkmale der Region kennenlernen, das Schulgelände mitgestalten." },
+        { "titel" : "Ökologische Zusammenhänge bei der Gestaltung und Nutzung von Räumen erkennen und beachten", "beschreibung" : "Typische Lebensgrundlagen der Region erkunden, positive und negative Auswirkungen von Landschaftsveränderungen reflektieren, Naturschutzmaßnahmen kennen und zum Naturschutz beitragen." }
+      ]
+    },
+    {
+      "titel" : "Vergangenheit, Gegenwart, Zukunft – Perspektive Zeit",
+      "code" : "V",
+      "kinder" : [
+        { "titel" : "Zeitliche Strukturen im Alltag unterscheiden und für eigene Planungen nutzen", "beschreibung" : "Natürliche Zeitrhythmen und kulturelle Zeiteinteilungen unterscheiden, eigene Zeit planen, subjektive und gemessene Zeit vergleichen, das Jahr mit dem Kalender gliedern." },
+        { "titel" : "Veränderungen menschlicher Gewohnheiten, Bedürfnisse und Lebensumstände an ausgewählten Beispielen erkennen", "beschreibung" : "Veränderungen der Lebensbedingungen vergleichen, das eigene Kulturgut und das von Kindern mit Migrationshintergrund kennenlernen, Lebensbedingungen verschiedener Generationen erforschen." },
+        { "titel" : "Gegenwärtige Lebensumstände auch als Folge früherer Entwicklungen, Handlungsweisen, Erfindungen und Entdeckungen erkennen", "beschreibung" : "Erfindungen kennenlernen und ihre Auswirkungen auf gegenwärtige und zukünftige Generationen einschätzen." },
+        { "titel" : "Über den Einfluss gegenwärtiger Entscheidungen und Handlungen auf zukünftige Lebensumstände nachdenken und die möglichen Folgen abwägen", "beschreibung" : "Sich der Verantwortung gegenüber Risiken und Gefahren bewusst werden, heutige Entscheidungen und ihre Auswirkungen reflektieren, Zukunftsvisionen entwickeln." },
+        { "titel" : "Bei der Beurteilung von Entscheidungen und Handlungen die jeweiligen Zeitumstände berücksichtigen", "beschreibung" : "Gemeinsamkeiten und Unterschiede im Handeln von Menschen in Vergangenheit und Gegenwart herausarbeiten." },
+        { "titel" : "Verschiedene Quellen als Grundlage des Wissens über Vergangenheit kennen, vergleichen und ausgewählte Quellen sachgerecht nutzen", "beschreibung" : "Die eigene Lebens- und Klassengeschichte anhand geeigneter Quellen darstellen, Dokumente und Berichte aus früheren Zeiten mit Gegenwärtigem vergleichen, den Entstehungsprozess einer örtlichen Einrichtung rekonstruieren." }
+      ]
+    }
+  ]
+}

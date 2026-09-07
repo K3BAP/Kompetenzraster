@@ -1,0 +1,70 @@
+name: Kompetenzraster
+options:
+  bundleIdPrefix: com.kompetenzraster
+  deploymentTarget:
+    macOS: "15.0"
+  createIntermediateGroups: true
+  groupSortPosition: top
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    DEVELOPMENT_TEAM: ""
+    SWIFT_EMIT_LOC_STRINGS: YES
+
+targets:
+  Kompetenzraster:
+    type: application
+    platform: macOS
+    sources:
+      - path: Kompetenzraster
+        excludes:
+          - "Resources/Info.plist"
+          - "Resources/Kompetenzraster.entitlements"
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.kompetenzraster.app
+        INFOPLIST_FILE: Kompetenzraster/Resources/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Kompetenzraster/Resources/Kompetenzraster.entitlements
+        CODE_SIGN_IDENTITY: "-"
+        CODE_SIGN_STYLE: Manual
+        ENABLE_HARDENED_RUNTIME: YES
+        ENABLE_USER_SCRIPT_SANDBOXING: YES
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        DEVELOPMENT_ASSET_PATHS: ""
+        SWIFT_APPROACHABLE_CONCURRENCY: YES
+      configs:
+        # Ohne das trüge auch der Release-Build „get-task-allow“ und ließe sich
+        # von jedem Debugger übernehmen – bei Schülerdaten unnötig offen.
+        Release:
+          CODE_SIGN_INJECT_BASE_ENTITLEMENTS: NO
+
+  KompetenzrasterTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - path: KompetenzrasterTests
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.kompetenzraster.app.tests
+        CODE_SIGN_IDENTITY: "-"
+        CODE_SIGN_STYLE: Manual
+        GENERATE_INFOPLIST_FILE: YES
+    dependencies:
+      - target: Kompetenzraster
+
+schemes:
+  Kompetenzraster:
+    build:
+      targets:
+        Kompetenzraster: all
+        KompetenzrasterTests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - KompetenzrasterTests

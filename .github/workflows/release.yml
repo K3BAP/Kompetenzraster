@@ -1,0 +1,53 @@
+name: Build & Release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Select latest Xcode
+        run: sudo xcode-select -s /Applications/Xcode.app
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Run tests
+        run: make test
+
+      - name: Build release zip
+        run: make release
+        env:
+          BUILD_NUMBER: ${{ github.run_number }}
+
+      - name: Publish rolling "latest" release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: latest
+          name: Latest build
+          body: |
+            Automatischer Build aus `main` (${{ github.sha }}), Build-Nummer ${{ github.run_number }}.
+
+            **Kompetenzraster.zip** herunterladen, entpacken und nach „Programme“ ziehen.
+
+            Die App ist nur ad-hoc signiert. Beim ersten Start deshalb mit der rechten
+            Maustaste darauf klicken und **Öffnen** wählen — oder die Quarantäne entfernen:
+            `xattr -dr com.apple.quarantine Kompetenzraster.app`
+
+            `latest.json` ist die Versionsdatei, mit der die App selbst nach Aktualisierungen sieht.
+          prerelease: true
+          files: |
+            dist/Kompetenzraster.zip
+            dist/latest.json

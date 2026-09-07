@@ -1,0 +1,114 @@
+{
+  "schemaVersion" : 1,
+  "name" : "Mathematik – Grundschule",
+  "fach" : "Mathematik",
+  "quelle" : "Teilrahmenplan Mathematik, Rahmenplan Grundschule Rheinland-Pfalz (Ministerium für Bildung, Dezember 2014, in Kraft seit 01.08.2015). Gegliedert bis zur Ebene der Oberkompetenzen.",
+  "hinweis" : "Der Teilrahmenplan weist zu jeder Oberkompetenz Kompetenzerwartungen für das Ende des 2. und des 4. Schuljahres aus. Diese feingliedrigen Erwartungen sind hier bewusst nicht enthalten und können als eigene Unterkompetenzen ergänzt werden.",
+  "kompetenzen" : [
+    {
+      "titel" : "Raum und Form",
+      "code" : "4.1",
+      "kinder" : [
+        {
+          "titel" : "Sich in der Ebene und im Raum orientieren",
+          "code" : "4.1.1",
+          "kinder" : [
+            { "titel" : "sich mit Richtungen und Lagebeziehungen in der Ebene und im Raum orientieren" },
+            { "titel" : "sich beim Bewegen in der Ebene und im Raum orientieren" }
+          ]
+        },
+        {
+          "titel" : "Elementare geometrische Figuren kennen und herstellen",
+          "code" : "4.1.2",
+          "kinder" : [
+            { "titel" : "Elemente von Figuren und deren Beziehungen", "beschreibung" : "Ecke, Kante, Fläche, parallel, rechter Winkel, Ebene." },
+            { "titel" : "2D-Figuren (ebene Figuren)", "beschreibung" : "Dreieck, Viereck, Rechteck, Quadrat, Parallelogramm, Raute, Vielecke, regelmäßige Vielecke, Kreis." },
+            { "titel" : "3D-Figuren (räumliche Figuren)", "beschreibung" : "Würfel, Quader, Kugel, Zylinder, Pyramide, Kegel und ihre Netze." }
+          ]
+        },
+        {
+          "titel" : "Elementare geometrische Abbildungen verwenden",
+          "code" : "4.1.3",
+          "kinder" : [
+            { "titel" : "deckungsgleiche ebene Figuren betrachten und herstellen (Kongruenz-Abbildungen)" },
+            { "titel" : "Deckungsgleichheit und Symmetrie", "beschreibung" : "Achsensymmetrische und drehsymmetrische Figuren erkennen und herstellen." },
+            { "titel" : "Vergrößern und Verkleinern von Figuren (Ähnlichkeits-Abbildungen)" }
+          ]
+        },
+        {
+          "titel" : "Verfahren zum Messen von Längen, Flächeninhalten und Rauminhalten anwenden",
+          "code" : "4.1.4",
+          "kinder" : [
+            { "titel" : "Längenmaße bestimmen" },
+            { "titel" : "Umfang ebener Figuren bestimmen" },
+            { "titel" : "Flächeninhalte bestimmen" },
+            { "titel" : "Rauminhalte bestimmen" }
+          ]
+        }
+      ]
+    },
+    {
+      "titel" : "Zahlen und Operationen",
+      "code" : "4.2",
+      "kinder" : [
+        {
+          "titel" : "Zahlen",
+          "code" : "4.2.1",
+          "kinder" : [
+            { "titel" : "Zählen, Zahlen lesen und schreiben", "beschreibung" : "Zuordnungsbegriffe, Ziffern und Zahlen; Zahlenraum bis 100 bzw. bis 1 Million." }
+          ]
+        },
+        {
+          "titel" : "Zahldarstellungen und Zahlbeziehungen verstehen",
+          "code" : "4.2.2",
+          "kinder" : [
+            { "titel" : "Zahlvorstellungen aktivieren und nutzen", "beschreibung" : "Kardinaler und ordinaler Zahlaspekt, Anzahlen erfassen und schätzen, zwischen Zahldarstellungen wechseln." },
+            { "titel" : "Zahlbeziehungen verstehen", "beschreibung" : "Zahlen vergleichen, ordnen und zerlegen, Strukturen und Muster erkennen und fortsetzen, dezimales Stellenwertsystem." }
+          ]
+        },
+        {
+          "titel" : "Rechenoperationen verstehen und flexibel anwenden",
+          "code" : "4.2.3",
+          "kinder" : [
+            { "titel" : "mathematische Operationen von Addition und Subtraktion verstehen" },
+            { "titel" : "mathematische Operationen von Multiplikation und Division verstehen" },
+            { "titel" : "schriftliche Rechenverfahren verstehen" },
+            { "titel" : "in Kontexten rechnen", "beschreibung" : "Sachsituationen und Gleichungen aufeinander beziehen, Rechengeschichten finden, Ergebnisse geeignet darstellen." }
+          ]
+        }
+      ]
+    },
+    {
+      "titel" : "Größen und Messen",
+      "code" : "4.3",
+      "kinder" : [
+        { "titel" : "Größenvorstellungen besitzen", "beschreibung" : "Längen, Gewichte, Rauminhalte, Zeitspannen und Geldwerte kennen, schätzen und mit Stützpunktvorstellungen vergleichen." },
+        { "titel" : "mit Größen in Sachsituationen umgehen", "beschreibung" : "Größenangaben in Sachsituationen entnehmen, umwandeln und mit ihnen rechnen." }
+      ]
+    },
+    {
+      "titel" : "Daten, Häufigkeit, Wahrscheinlichkeit",
+      "code" : "4.4",
+      "kinder" : [
+        { "titel" : "einfache Bruchzahlen und Bilder dazu, fortgesetztes Halbieren, Anteile", "beschreibung" : "Namen und geometrische Darstellungen zu den elementaren Brüchen 1/2, 1/4, 1/8 und 1/3." },
+        { "titel" : "kombinatorische Muster herstellen, darstellen und zählen" },
+        { "titel" : "Häufigkeiten in kombinatorischen Mustern" },
+        { "titel" : "Daten lesen, deuten, erfassen und darstellen", "beschreibung" : "Gegebene Daten in Listen, Tabellen, Bildern und Diagrammen lesen und eigene Daten erheben und darstellen." },
+        { "titel" : "Wahrscheinlichkeit von Ereignissen in Zufallsexperimenten einschätzen und vergleichen" },
+        { "titel" : "Wahrscheinlichkeit sprachlich kennzeichnen", "beschreibung" : "Grundbegriffe wie sicher, möglich und unmöglich auf Aussagen beziehen." }
+      ]
+    },
+    {
+      "titel" : "Allgemeine mathematische Kompetenzen",
+      "code" : "2.2",
+      "beschreibung" : "Prozessbezogene Kompetenzen nach den Bildungsstandards der KMK.",
+      "kinder" : [
+        { "titel" : "Darstellen", "beschreibung" : "Geeignete Darstellungen entwickeln, auswählen und nutzen; eine Darstellung in eine andere übertragen; Darstellungen vergleichen und bewerten." },
+        { "titel" : "Kommunizieren", "beschreibung" : "Eigene Vorgehensweisen beschreiben, Lösungswege anderer verstehen und gemeinsam darüber reflektieren; Fachbegriffe sachgerecht verwenden; Verabredungen einhalten." },
+        { "titel" : "Argumentieren", "beschreibung" : "Mathematische Zusammenhänge erkunden, Vermutungen aufstellen und begründen oder widerlegen; Begründungen nachvollziehen und prüfen." },
+        { "titel" : "Modellieren", "beschreibung" : "Sachsituationen in mathematische Modelle übersetzen, darin lösen und die Lösung auf die Ausgangssituation beziehen; zu Gleichungen passende Sachsituationen finden." },
+        { "titel" : "Problemlösen", "beschreibung" : "Aufgaben erfassen, Lösungsstrategien entwickeln und nutzen, Zusammenhänge auf ähnliche Aufgaben übertragen, Ergebnisse auf Plausibilität prüfen." }
+      ]
+    }
+  ]
+}

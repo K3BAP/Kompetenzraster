@@ -1,0 +1,47 @@
+{
+  "schemaVersion" : 1,
+  "name" : "Deutsch – Grundschule",
+  "fach" : "Deutsch",
+  "quelle" : "Teilrahmenplan Deutsch, Rahmenplan Grundschule Rheinland-Pfalz (Ministerium für Bildung, Januar 2005/2015). Gegliedert bis zur Ebene der Oberkompetenzen.",
+  "hinweis" : "Der Teilrahmenplan verzichtet bewusst auf eine Zuordnung zu Klassenstufen, weil die Sprachentwicklung der Kinder sehr unterschiedlich verläuft.",
+  "kompetenzen" : [
+    {
+      "titel" : "Sprechen und Zuhören",
+      "kinder" : [
+        { "titel" : "zu anderen sprechen", "beschreibung" : "An der Standardsprache orientiert und artikuliert sprechen, die Sprechabsicht beachten (erzählen, informieren, argumentieren, appellieren, fragen, loben) und das eigene Sprechen anlassgerecht planen." },
+        { "titel" : "Gespräche führen", "beschreibung" : "Sich an Gesprächen beteiligen, Gesprächsregeln beachten, Konflikte und Anliegen gemeinsam diskutieren und klären, gemeinsame Vorhaben planen." },
+        { "titel" : "verstehend zuhören", "beschreibung" : "Inhalte zuhörend verstehen, aktiv und aufmerksam zuhören, gezielt nachfragen, Verstehen und Nicht-Verstehen ausdrücken, Empathie entwickeln und zeigen." },
+        { "titel" : "mit verteilten Rollen sprechen und spielen", "beschreibung" : "Perspektiven einnehmen, sich in eine Rolle hineinversetzen und sie gestalten, verschiedene Spielformen szenisch ausgestalten, das Sprechen mimisch und gestisch unterstützen." },
+        { "titel" : "über Lernerfahrungen sprechen", "beschreibung" : "Sachverhalte und Beobachtungen beschreiben, begründen und erklären, Lernergebnisse präsentieren, Fachbegriffe benutzen, anderen beim Lernen helfen." }
+      ]
+    },
+    {
+      "titel" : "Lesen, Umgang mit Texten und Medien",
+      "kinder" : [
+        { "titel" : "über Lesefertigkeit und Lesemotivation verfügen", "beschreibung" : "Altersgemäße Texte flüssig und sinnverstehend lesen, beim Lesen und Hören anschauliche Vorstellungen entwickeln, selbst ausgewählte Bücher selbstständig lesen, verschiedene Schrifttypen lesen." },
+        { "titel" : "über Leseerfahrungen verfügen", "beschreibung" : "Sach- und Gebrauchstexte sowie Erzähltexte, lyrische und dramatische Texte kennen, Kinderliteratur kennen, sich in einer Bücherei orientieren, Informationsquellen und Medienangebote begründet auswählen." },
+        { "titel" : "Texte erschließen", "beschreibung" : "Verfahren zur ersten Orientierung nutzen, Texte genau lesen, Verstehenshilfen einsetzen, Aussagen mit Textstellen belegen, eigene Gedanken zu Texten entwickeln, handelnd mit Texten umgehen." },
+        { "titel" : "Texte präsentieren", "beschreibung" : "Texte zum Vorlesen vorbereiten und sinngestaltend vorlesen, Geschichten, Gedichte und Dialoge vortragen, ein Buch auswählen und vorstellen, Medien für Präsentationen nutzen." }
+      ]
+    },
+    {
+      "titel" : "Schreiben",
+      "kinder" : [
+        { "titel" : "über Schreibfertigkeiten verfügen", "beschreibung" : "Eine gut lesbare Handschrift flüssig schreiben, Texte zweckmäßig und übersichtlich gestalten, den Rechner zum Schreiben und für die Textgestaltung verwenden." },
+        { "titel" : "richtig schreiben", "beschreibung" : "Geübte, rechtschreibwichtige Wörter normgerecht schreiben, Rechtschreibstrategien und -hilfen verwenden, Zeichensetzung beachten, Fehlersensibilität entwickeln, Arbeitstechniken einsetzen." },
+        { "titel" : "Texte planen", "beschreibung" : "Teilbereich „Texte verfassen“: Schreibabsicht, Schreibsituation, Adressaten und Verwendung klären; Ideen, gestalterische Mittel und Formulierungen sammeln und ordnen." },
+        { "titel" : "Texte schreiben", "beschreibung" : "Teilbereich „Texte verfassen“: Gedanken und Gefühle nachvollziehbar aufschreiben, Erfahrungen und Sachverhalte adressatengerecht darstellen, erlebte oder erfundene Geschichten schreiben, Lernergebnisse geordnet festhalten." },
+        { "titel" : "Texte überarbeiten", "beschreibung" : "Teilbereich „Texte verfassen“: Texte an der Schreibaufgabe und auf Verständlichkeit und Wirkung überprüfen, sprachlich und rechtschriftlich verbessern, für die Veröffentlichung aufbereiten und gestalten." }
+      ]
+    },
+    {
+      "titel" : "Sprache und Sprachgebrauch untersuchen",
+      "kinder" : [
+        { "titel" : "grundlegende sprachliche Strukturen und Begriffe kennen", "beschreibung" : "Grundlegende Fachbegriffe zu Laut, Wort, Satz und Text kennen und verwenden (siehe Anhang „Grundlegende Fachbegriffe“ des Teilrahmenplans)." },
+        { "titel" : "sprachliche Verständigung untersuchen", "beschreibung" : "Die Beziehung zwischen Absicht, sprachlichen Merkmalen und Wirkung untersuchen, Unterschiede von gesprochener und geschriebener Sprache kennen, Rollen von Sprecher und Hörer untersuchen, über Verständigungsprobleme sprechen." },
+        { "titel" : "an Wörtern, Sätzen und Texten arbeiten", "beschreibung" : "Wörter strukturieren und Wortbildung kennen, Wörter sammeln und ordnen, sprachliche Operationen nutzen (umstellen, ergänzen, ersetzen, weglassen), mit Sprache experimentell und spielerisch umgehen." },
+        { "titel" : "Gemeinsamkeiten und Unterschiede von Sprachen entdecken", "beschreibung" : "Deutsch mit Fremdsprachen, Dialekt und Standardsprache sowie den Herkunftssprachen in der Klasse vergleichen, gebräuchliche Fremdwörter untersuchen." }
+      ]
+    }
+  ]
+}
