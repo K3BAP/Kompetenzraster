@@ -69,6 +69,14 @@ final class Aktualisierungspruefer {
     private(set) var stand: Stand = .ruhend
     /// Wird gesetzt, wenn die Lehrperson den Hinweis für diese Fassung weggeklickt hat.
     private(set) var ausgeblendet = false
+    /// Ob die letzte Prüfung von Hand angestoßen wurde. Nur dann meldet die App auch,
+    /// dass alles aktuell ist – beim stillen Start wäre das nur Lärm.
+    private(set) var letztePruefungManuell = false
+    private(set) var rueckmeldungAusgeblendet = false
+
+    private var ausblendAufgabe: Task<Void, Never>?
+    /// Wie lange die Bestätigung „alles aktuell“ stehen bleibt.
+    var bestaetigungsdauer: Duration = .seconds(6)
 
     private let eigene: EigeneVersion
     private let laden: @Sendable (URL) async throws -> Data
@@ -104,6 +112,9 @@ final class Aktualisierungspruefer {
             return
         }
 
+        letztePruefungManuell = erzwungen
+        rueckmeldungAusgeblendet = false
+        ausblendAufgabe?.cancel()
         stand = .laeuft
         do {
             let daten = try await laden(Veroeffentlichung.manifestURL)
@@ -118,11 +129,28 @@ final class Aktualisierungspruefer {
                 stand = .neueVersion(manifest)
             } else {
                 stand = .aktuell
+                blendeBestaetigungAus()
             }
         } catch {
-            // Kein Netz ist kein Fehlerfall, über den die Lehrperson stolpern soll.
+            // Kein Netz ist kein Fehlerfall, über den die Lehrperson stolpern soll –
+            // beim stillen Start bleibt er unsichtbar, nach einem Klick nicht.
             stand = .fehler(error.localizedDescription)
         }
+    }
+
+    /// Die Bestätigung verschwindet von selbst wieder; ein Fehler bleibt stehen.
+    private func blendeBestaetigungAus() {
+        ausblendAufgabe = Task { [weak self, dauer = bestaetigungsdauer] in
+            try? await Task.sleep(for: dauer)
+            guard !Task.isCancelled else { return }
+            self?.rueckmeldungAusgeblendet = true
+        }
+    }
+
+    /// Schließt die Rückmeldung zu einer von Hand angestoßenen Prüfung.
+    func rueckmeldungSchliessen() {
+        ausblendAufgabe?.cancel()
+        rueckmeldungAusgeblendet = true
     }
 
     /// Blendet den Hinweis für genau diese Fassung aus.
@@ -133,8 +161,22 @@ final class Aktualisierungspruefer {
         ausgeblendet = true
     }
 
+    /// Der Streifen für eine neue Fassung.
     var zeigtHinweis: Bool {
         if case .neueVersion = stand { return !ausgeblendet }
         return false
     }
+
+    /// Die Rückmeldung auf einen Klick in Menü oder Einstellungen: läuft, ist aktuell,
+    /// hat nicht geklappt. Ohne sie sieht es so aus, als sei nichts passiert.
+    var zeigtRueckmeldung: Bool {
+        guard letztePruefungManuell, !rueckmeldungAusgeblendet else { return false }
+        switch stand {
+        case .laeuft, .aktuell, .fehler: return true
+        case .ruhend, .neueVersion: return false
+        }
+    }
+
+    /// Ob überhaupt etwas über dem Fenster liegt.
+    var zeigtStreifen: Bool { zeigtHinweis || zeigtRueckmeldung }
 }

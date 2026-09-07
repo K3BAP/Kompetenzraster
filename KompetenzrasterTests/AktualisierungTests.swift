@@ -144,6 +144,64 @@ struct AktualisierungTests {
         #expect(dritter.zeigtHinweis)
     }
 
+    @Test("Eine von Hand angestoßene Suche meldet auch, dass alles aktuell ist")
+    func rueckmeldungBeiManuellerSuche() async {
+        let werkzeug = pruefer(eigenerBuild: 5, speicher: frischerSpeicher()) { manifestDaten(build: 5) }
+        await werkzeug.pruefe(erzwungen: true)
+
+        #expect(werkzeug.stand == .aktuell)
+        #expect(werkzeug.zeigtRueckmeldung, "Sonst sieht es aus, als sei nichts passiert")
+        #expect(werkzeug.zeigtStreifen)
+        #expect(werkzeug.zeigtHinweis == false, "Es gibt ja nichts Neues herunterzuladen")
+    }
+
+    @Test("Die stille Prüfung beim Start meldet nichts, wenn alles aktuell ist")
+    func stillerStartBleibtStill() async {
+        let werkzeug = pruefer(eigenerBuild: 5, speicher: frischerSpeicher()) { manifestDaten(build: 5) }
+        await werkzeug.pruefe(erzwungen: false)
+
+        #expect(werkzeug.stand == .aktuell)
+        #expect(werkzeug.zeigtRueckmeldung == false)
+        #expect(werkzeug.zeigtStreifen == false)
+    }
+
+    @Test("Ein Fehler wird nur nach einem Klick gezeigt", arguments: [true, false])
+    func fehlerNurNachKlick(manuell: Bool) async {
+        let werkzeug = pruefer(eigenerBuild: 1, speicher: frischerSpeicher()) {
+            throw URLError(.notConnectedToInternet)
+        }
+        await werkzeug.pruefe(erzwungen: manuell)
+        #expect(werkzeug.zeigtStreifen == manuell)
+    }
+
+    @Test("Die Bestätigung lässt sich schließen und geht von selbst wieder weg")
+    func bestaetigungVerschwindet() async throws {
+        let werkzeug = pruefer(eigenerBuild: 5, speicher: frischerSpeicher()) { manifestDaten(build: 5) }
+        werkzeug.bestaetigungsdauer = .milliseconds(40)
+
+        await werkzeug.pruefe(erzwungen: true)
+        #expect(werkzeug.zeigtRueckmeldung)
+
+        try await Task.sleep(for: .milliseconds(220))
+        #expect(werkzeug.zeigtRueckmeldung == false, "Der Streifen soll nicht stehen bleiben")
+
+        // Und von Hand schließen geht sofort.
+        await werkzeug.pruefe(erzwungen: true)
+        #expect(werkzeug.zeigtRueckmeldung)
+        werkzeug.rueckmeldungSchliessen()
+        #expect(werkzeug.zeigtRueckmeldung == false)
+    }
+
+    @Test("Eine neue Fassung zeigt den Herunterladen-Streifen, keine Bestätigung")
+    func neueVersionStattBestaetigung() async {
+        let werkzeug = pruefer(eigenerBuild: 2, speicher: frischerSpeicher()) { manifestDaten(build: 9) }
+        await werkzeug.pruefe(erzwungen: true)
+
+        #expect(werkzeug.zeigtHinweis)
+        #expect(werkzeug.zeigtRueckmeldung == false)
+        #expect(werkzeug.zeigtStreifen)
+    }
+
     @Test("Die eigene Fassung wird aus der Info.plist gelesen")
     func eigeneVersionAusBundle() {
         let eigene = EigeneVersion.ausBundle(.main)

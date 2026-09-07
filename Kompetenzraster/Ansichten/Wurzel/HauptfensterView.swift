@@ -21,11 +21,12 @@ struct HauptfensterView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            if pruefer.zeigtHinweis, case .neueVersion(let manifest) = pruefer.stand {
-                AktualisierungsHinweisView(manifest: manifest) { pruefer.spaeter() }
+            if pruefer.zeigtStreifen {
+                AktualisierungsHinweisView(pruefer: pruefer)
             }
             fenster
         }
+        .animation(.snappy, value: pruefer.zeigtStreifen)
     }
 
     private var fenster: some View {
