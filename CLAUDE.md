@@ -105,7 +105,7 @@ Zweistufig und bewusst getrennt:
 
 Die App liest nur dieses JSON. Die Quell-PDFs sind nicht im Repository (siehe
 `Tools/RasterExtractor/Quellen/README.md`). `VorlagenTests` prüft die Knotenzahlen fest
-(22/44/33) — ändert sich eine Vorlage, müssen diese Zahlen mit.
+(22/60/33) — ändert sich eine Vorlage, müssen diese Zahlen mit.
 
 ### Aktualisierung
 

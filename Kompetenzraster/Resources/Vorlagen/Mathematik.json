@@ -3,7 +3,7 @@
   "name" : "Mathematik – Grundschule",
   "fach" : "Mathematik",
   "quelle" : "Teilrahmenplan Mathematik, Rahmenplan Grundschule Rheinland-Pfalz (Ministerium für Bildung, Dezember 2014, in Kraft seit 01.08.2015). Gegliedert bis zur Ebene der Oberkompetenzen.",
-  "hinweis" : "Der Teilrahmenplan weist zu jeder Oberkompetenz Kompetenzerwartungen für das Ende des 2. und des 4. Schuljahres aus. Diese feingliedrigen Erwartungen sind hier bewusst nicht enthalten und können als eigene Unterkompetenzen ergänzt werden.",
+  "hinweis" : "Der Teilrahmenplan weist zu jeder inhaltsbezogenen Oberkompetenz Kompetenzerwartungen für das Ende des 2. und des 4. Schuljahres aus. Diese feingliedrigen Erwartungen sind hier bewusst nicht enthalten und können als eigene Unterkompetenzen ergänzt werden. Bei den prozessbezogenen Kompetenzen stehen die Kompetenzerwartungen D1–P3 dagegen vollständig, weil der Plan sie dort nicht nach Schuljahren aufteilt.",
   "kompetenzen" : [
     {
       "titel" : "Raum und Form",
@@ -99,15 +99,56 @@
       ]
     },
     {
-      "titel" : "Allgemeine mathematische Kompetenzen",
+      "titel" : "Allgemeine mathematische Kompetenzen (prozessbezogen)",
       "code" : "2.2",
-      "beschreibung" : "Prozessbezogene Kompetenzen nach den Bildungsstandards der KMK.",
+      "beschreibung" : "Die prozessbezogenen Kompetenzen der Bildungsstandards (KMK 2004); der Teilrahmenplan übernimmt sie in geänderter Reihenfolge und ergänzt einzelne Kompetenzerwartungen. Sie beschreiben, wie mit mathematischen Gegenständen umgegangen wird, und greifen quer über alle Inhaltsbereiche.",
       "kinder" : [
-        { "titel" : "Darstellen", "beschreibung" : "Geeignete Darstellungen entwickeln, auswählen und nutzen; eine Darstellung in eine andere übertragen; Darstellungen vergleichen und bewerten." },
-        { "titel" : "Kommunizieren", "beschreibung" : "Eigene Vorgehensweisen beschreiben, Lösungswege anderer verstehen und gemeinsam darüber reflektieren; Fachbegriffe sachgerecht verwenden; Verabredungen einhalten." },
-        { "titel" : "Argumentieren", "beschreibung" : "Mathematische Zusammenhänge erkunden, Vermutungen aufstellen und begründen oder widerlegen; Begründungen nachvollziehen und prüfen." },
-        { "titel" : "Modellieren", "beschreibung" : "Sachsituationen in mathematische Modelle übersetzen, darin lösen und die Lösung auf die Ausgangssituation beziehen; zu Gleichungen passende Sachsituationen finden." },
-        { "titel" : "Problemlösen", "beschreibung" : "Aufgaben erfassen, Lösungsstrategien entwickeln und nutzen, Zusammenhänge auf ähnliche Aufgaben übertragen, Ergebnisse auf Plausibilität prüfen." }
+        {
+          "titel" : "Darstellen",
+          "beschreibung" : "Darstellen bezeichnet das zumeist nicht flüchtige Ausformen und Festhalten mathematischer Objekte in Gegenständen, Bildern oder Zeichen, um diese sich oder anderen zu vergegenwärtigen und angemessen bearbeiten zu können.",
+          "kinder" : [
+            { "titel" : "für das Bearbeiten mathematischer Probleme geeignete Darstellungen entwickeln, auswählen und nutzen", "code" : "D1" },
+            { "titel" : "eine Darstellung in eine andere übertragen", "code" : "D2" },
+            { "titel" : "Darstellungen miteinander vergleichen und bewerten", "code" : "D3" }
+          ]
+        },
+        {
+          "titel" : "Kommunizieren",
+          "beschreibung" : "Kommunizieren bezeichnet das selbstständige deutungssichere Mitteilen von Beschreibungen, Tatbeständen, Vorgehensweisen und Argumenten an andere, zumeist auf der Basis von gemeinsam vereinbarten Bezeichnungen und Bedeutungen.",
+          "kinder" : [
+            { "titel" : "eigene Vorgehensweisen beschreiben, Lösungswege anderer verstehen und gemeinsam darüber reflektieren", "code" : "K1" },
+            { "titel" : "mathematische Fachbegriffe und Zeichen sachgerecht verwenden", "code" : "K2" },
+            { "titel" : "Aufgaben gemeinsam bearbeiten, dabei Verabredungen treffen und einhalten", "code" : "K3" },
+            { "titel" : "Überlegungen und Lösungswege so dokumentieren, dass sie anderen mitzuteilen sind", "code" : "K4" }
+          ]
+        },
+        {
+          "titel" : "Argumentieren",
+          "beschreibung" : "Argumentieren bezeichnet die Fähigkeit, im Rahmen vereinbarter Regelwerke und gemeinsam akzeptierter Tatbestände schlussfolgernd zu denken, Korrektes von Unkorrektem zu unterscheiden und weiterführende Gedanken zu entwickeln.",
+          "kinder" : [
+            { "titel" : "mathematische Aussagen hinterfragen und auf Korrektheit prüfen", "code" : "A1" },
+            { "titel" : "mathematische Zusammenhänge erkennen und Vermutungen entwickeln", "code" : "A2" },
+            { "titel" : "Begründungen suchen und nachvollziehen", "code" : "A3" }
+          ]
+        },
+        {
+          "titel" : "Modellieren",
+          "beschreibung" : "Modellieren bezeichnet die Fähigkeit, Mathematik und andere, in der Regel lebensweltliche Gegenstände, zueinander in Beziehung zu setzen und daraus Schlüsse zu ziehen.",
+          "kinder" : [
+            { "titel" : "Sachtexten und anderen Darstellungen der Lebenswirklichkeit die relevanten Informationen entnehmen", "code" : "M1" },
+            { "titel" : "Sachprobleme in die Sprache der Mathematik übertragen, innermathematisch lösen und diese Lösungen auf die Ausgangssituation beziehen", "code" : "M2" },
+            { "titel" : "zu Termen, Gleichungen und bildlichen Darstellungen Sachaufgaben formulieren", "code" : "M3" }
+          ]
+        },
+        {
+          "titel" : "Problemlösen",
+          "beschreibung" : "Problemlösen bezeichnet die Fähigkeit, Lösungen von mathematischen Problemen zu erarbeiten, dabei verschiedene Wege zu erproben und schließlich Lösungsversuche und Lösungsverfahren planen zu können.",
+          "kinder" : [
+            { "titel" : "mathematische Kenntnisse, Fertigkeiten und Fähigkeiten bei der Bearbeitung problemhaltiger Aufgaben anwenden", "code" : "P1" },
+            { "titel" : "eigene und vorbereitete Lösungsstrategien entwickeln und nutzen (z. B. systematisch probieren)", "code" : "P2" },
+            { "titel" : "Zusammenhänge erkennen, nutzen und auf ähnliche Sachverhalte übertragen", "code" : "P3" }
+          ]
+        }
       ]
     }
   ]

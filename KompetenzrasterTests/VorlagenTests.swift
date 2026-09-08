@@ -20,7 +20,7 @@ struct VorlagenTests {
 
     @Test("Der Umfang der Vorlagen entspricht den Teilrahmenplänen")
     func umfang() throws {
-        let erwartet = ["Deutsch": 22, "Mathematik": 44, "Sachunterricht": 33]
+        let erwartet = ["Deutsch": 22, "Mathematik": 60, "Sachunterricht": 33]
         for (fach, anzahl) in erwartet {
             #expect(try VorlagenLader.datei(fach: fach).anzahlKompetenzen == anzahl)
         }
@@ -62,6 +62,15 @@ struct VorlagenTests {
         )
         try kontext.save()
 
+        // Auch die prozessbezogenen Kompetenzen sind dreistufig: Bereich → Darstellen … → D1 …
+        let prozess = try #require(raster.wurzeln.first { $0.code == "2.2" })
+        #expect(prozess.kinderSortiert.map(\.titel) == [
+            "Darstellen", "Kommunizieren", "Argumentieren", "Modellieren", "Problemlösen",
+        ])
+        #expect(prozess.kinderSortiert.allSatisfy { !$0.kinder.isEmpty }, "Sie sind Oberkompetenzen, keine Blätter")
+        #expect(prozess.blaetterImTeilbaum.count == 16)
+        #expect(prozess.blaetterImTeilbaum.first?.code == "D1")
+
         let raumUndForm = try #require(raster.wurzeln.first { $0.titel == "Raum und Form" })
         #expect(raumUndForm.code == "4.1")
         let orientieren = try #require(raumUndForm.kinderSortiert.first)
@@ -86,7 +95,7 @@ struct VorlagenTests {
         let ziel = ModelContext(try Datenbestand.container(imArbeitsspeicher: true))
         try BackupService.importiere(rohdaten, modus: .ersetzen, in: ziel)
 
-        #expect(try ziel.fetchCount(FetchDescriptor<Kompetenz>()) == 22 + 44 + 33)
+        #expect(try ziel.fetchCount(FetchDescriptor<Kompetenz>()) == 22 + 60 + 33)
         let mathe = try #require(
             try ziel.fetch(FetchDescriptor<Kompetenzraster>()).first { $0.fach == "Mathematik" }
         )
