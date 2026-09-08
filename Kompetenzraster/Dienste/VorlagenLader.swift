@@ -14,6 +14,11 @@ struct VorlagenDatei: Decodable, Sendable {
     var anzahlKompetenzen: Int {
         kompetenzen.reduce(0) { $0 + $1.anzahlImTeilbaum }
     }
+
+    /// Herkunft und Hinweis, wie sie im Raster unter „Quelle“ stehen.
+    var quellenangabe: String {
+        [quelle, hinweis].compactMap { $0 }.joined(separator: "\n\n")
+    }
 }
 
 struct VorlagenKnoten: Decodable, Sendable {
@@ -55,6 +60,13 @@ enum VorlagenLader {
         verfuegbareFaecher.compactMap { try? datei(fach: $0, bundle: bundle) }
     }
 
+    /// Die mitgelieferte Vorlage, aus der dieses Raster stammt – über das Fach, ersatzweise über
+    /// den Namen, denn beides lässt sich im Editor ändern.
+    static func passendeVorlage(fuer raster: Kompetenzraster, bundle: Bundle = .main) -> VorlagenDatei? {
+        let vorlagen = alleVorlagen(bundle: bundle)
+        return vorlagen.first { $0.fach == raster.fach } ?? vorlagen.first { $0.name == raster.name }
+    }
+
     /// Legt aus einer Vorlage ein neues Raster an und fügt es dem Kontext hinzu.
     @discardableResult
     static func einfuegen(
@@ -65,7 +77,7 @@ enum VorlagenLader {
         let raster = Kompetenzraster(
             name: vorlage.name,
             fach: vorlage.fach,
-            quelle: [vorlage.quelle, vorlage.hinweis].compactMap { $0 }.joined(separator: "\n\n"),
+            quelle: vorlage.quellenangabe,
             istVorlage: true
         )
         raster.skala = skala
@@ -77,7 +89,8 @@ enum VorlagenLader {
         return raster
     }
 
-    private static func baue(
+    /// Legt einen Knoten samt Teilbaum an; ``Vorlagenabgleich`` ergänzt damit fehlende Zweige.
+    static func baue(
         _ knoten: VorlagenKnoten,
         elternteil: Kompetenz?,
         raster: Kompetenzraster,

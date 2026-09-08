@@ -107,6 +107,13 @@ Die App liest nur dieses JSON. Die Quell-PDFs sind nicht im Repository (siehe
 `Tools/RasterExtractor/Quellen/README.md`). `VorlagenTests` prüft die Knotenzahlen fest
 (22/60/33) — ändert sich eine Vorlage, müssen diese Zahlen mit.
 
+Ein eingefügtes Raster ist eine **Kopie**; wächst die Vorlage später, erfährt es davon nichts.
+`Vorlagenabgleich` zieht das nach (Knopf „Mit Vorlage abgleichen“ im Raster-Editor): je
+Geschwistergruppe erst über `code`, dann über den Titel zuordnen, Fehlendes ergänzen, Texte
+nachziehen. **Gelöscht wird nie** — an jeder Kompetenz können Bewertungen hängen. Bekommt eine
+bewertete Kompetenz dabei Unterkompetenzen, fällt ihre Bewertung aus der Auswertung; der Bericht
+weist das vorher aus.
+
 ### Aktualisierung
 
 `Aktualisierungspruefer` lädt `latest.json` als **Release-Anhang** (nicht über `api.github.com`,

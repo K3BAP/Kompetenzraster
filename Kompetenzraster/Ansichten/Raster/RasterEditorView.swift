@@ -13,6 +13,9 @@ struct RasterEditorView: View {
 
     @State private var auswahlID: UUID?
     @State private var quelleZeigen = false
+    @State private var abgleichZeigen = false
+    /// Die mitgelieferte Vorlage zu diesem Raster, falls es eine gibt.
+    @State private var vorlage: VorlagenDatei?
 
     private var auswahl: Kompetenz? {
         raster.kompetenzen.first { $0.id == auswahlID }
@@ -25,6 +28,12 @@ struct RasterEditorView: View {
             HSplitView {
                 baum.frame(minWidth: 300)
                 detail.frame(minWidth: 240, maxWidth: 420)
+            }
+        }
+        .task(id: raster.fach) { vorlage = VorlagenLader.passendeVorlage(fuer: raster) }
+        .sheet(isPresented: $abgleichZeigen) {
+            if let vorlage {
+                VorlagenAbgleichView(raster: raster, vorlage: vorlage)
             }
         }
     }
@@ -51,6 +60,14 @@ struct RasterEditorView: View {
                             .frame(width: 420)
                             .textSelection(.enabled)
                     }
+                }
+                if let vorlage {
+                    Button {
+                        abgleichZeigen = true
+                    } label: {
+                        Label("Mit Vorlage abgleichen", systemImage: "arrow.triangle.2.circlepath")
+                    }
+                    .help("Ergänzt, was seit dem Anlegen zur Vorlage „\(vorlage.name)“ dazugekommen ist")
                 }
             }
 
