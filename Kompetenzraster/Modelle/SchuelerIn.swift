@@ -18,6 +18,9 @@ final class SchuelerIn {
     @Relationship(deleteRule: .cascade, inverse: \Eintrag.schueler)
     var eintraege: [Eintrag] = []
 
+    @Relationship(deleteRule: .cascade, inverse: \Mitarbeitseintrag.schueler)
+    var mitarbeit: [Mitarbeitseintrag] = []
+
     init(
         id: UUID = UUID(),
         vorname: String = "",

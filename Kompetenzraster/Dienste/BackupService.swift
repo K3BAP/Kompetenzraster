@@ -63,7 +63,8 @@ enum BackupService {
             schueler: daten.schueler.count,
             raster: daten.raster.count,
             kompetenzen: daten.kompetenzen.count,
-            eintraege: daten.eintraege.count
+            eintraege: daten.eintraege.count,
+            mitarbeitsstunden: (daten.mitarbeitsstunden ?? []).count
         )
 
         if let passwort, !passwort.isEmpty {
@@ -113,6 +114,18 @@ enum BackupService {
         daten.eintraege = try kontext.fetch(FetchDescriptor<Eintrag>()).map {
             EintragDTO(id: $0.id, datum: $0.datum, notiz: $0.notiz, geaendertAm: $0.geaendertAm,
                        schuelerID: $0.schueler?.id, kompetenzID: $0.kompetenz?.id, stufeID: $0.stufe?.id)
+        }
+        daten.mitarbeitsstunden = try kontext.fetch(FetchDescriptor<Mitarbeitsstunde>()).map {
+            MitarbeitsstundeDTO(id: $0.id, datum: $0.datum, fach: $0.fach, thema: $0.thema,
+                                erstelltAm: $0.erstelltAm, klasseID: $0.klasse?.id)
+        }
+        daten.mitarbeitseintraege = try kontext.fetch(FetchDescriptor<Mitarbeitseintrag>()).map {
+            MitarbeitseintragDTO(
+                id: $0.id, arbeitsverhalten: $0.arbeitsverhalten?.rawValue,
+                haeufigkeit: $0.haeufigkeit?.rawValue, qualitaet: $0.qualitaet?.rawValue,
+                anwesend: $0.anwesend, notiz: $0.notiz, geaendertAm: $0.geaendertAm,
+                stundeID: $0.stunde?.id, schuelerID: $0.schueler?.id
+            )
         }
         if let einstellungen = try kontext.fetch(FetchDescriptor<AppEinstellungen>()).first {
             daten.einstellungen = EinstellungenDTO(
@@ -174,6 +187,8 @@ enum BackupService {
         var klassen: [UUID: Klasse] = try vorhandene(in: kontext)
         var personen: [UUID: SchuelerIn] = try vorhandene(in: kontext)
         var eintraege: [UUID: Eintrag] = try vorhandene(in: kontext)
+        var stunden: [UUID: Mitarbeitsstunde] = try vorhandene(in: kontext)
+        var mitarbeit: [UUID: Mitarbeitseintrag] = try vorhandene(in: kontext)
 
         for dto in daten.skalen {
             let objekt = skalen[dto.id] ?? {
@@ -244,6 +259,27 @@ enum BackupService {
             objekt.geaendertAm = dto.geaendertAm
         }
 
+        for dto in daten.mitarbeitsstunden ?? [] {
+            let objekt = stunden[dto.id] ?? {
+                let neu = Mitarbeitsstunde(id: dto.id); kontext.insert(neu); stunden[dto.id] = neu; return neu
+            }()
+            objekt.datum = dto.datum
+            objekt.fach = dto.fach
+            objekt.thema = dto.thema
+            objekt.erstelltAm = dto.erstelltAm
+        }
+        for dto in daten.mitarbeitseintraege ?? [] {
+            let objekt = mitarbeit[dto.id] ?? {
+                let neu = Mitarbeitseintrag(id: dto.id); kontext.insert(neu); mitarbeit[dto.id] = neu; return neu
+            }()
+            objekt.arbeitsverhalten = dto.arbeitsverhalten.flatMap(Mitarbeitsstufe.init(rawValue:))
+            objekt.haeufigkeit = dto.haeufigkeit.flatMap(Mitarbeitsstufe.init(rawValue:))
+            objekt.qualitaet = dto.qualitaet.flatMap(Mitarbeitsstufe.init(rawValue:))
+            objekt.anwesend = dto.anwesend
+            objekt.notiz = dto.notiz
+            objekt.geaendertAm = dto.geaendertAm
+        }
+
         // Beziehungen erst jetzt, wenn alle Objekte existieren.
         for dto in daten.stufen { stufen[dto.id]?.skala = dto.skalaID.flatMap { skalen[$0] } }
         for dto in daten.raster { raster[dto.id]?.skala = dto.skalaID.flatMap { skalen[$0] } }
@@ -260,6 +296,15 @@ enum BackupService {
             eintrag.schueler = dto.schuelerID.flatMap { personen[$0] }
             eintrag.kompetenz = dto.kompetenzID.flatMap { kompetenzen[$0] }
             eintrag.stufe = dto.stufeID.flatMap { stufen[$0] }
+        }
+
+        for dto in daten.mitarbeitsstunden ?? [] {
+            stunden[dto.id]?.klasse = dto.klasseID.flatMap { klassen[$0] }
+        }
+        for dto in daten.mitarbeitseintraege ?? [] {
+            guard let eintrag = mitarbeit[dto.id] else { continue }
+            eintrag.stunde = dto.stundeID.flatMap { stunden[$0] }
+            eintrag.schueler = dto.schuelerID.flatMap { personen[$0] }
         }
 
         if let quelle = daten.einstellungen {
@@ -354,3 +399,5 @@ extension Kompetenz: Identifizierbar {}
 extension Bewertungsskala: Identifizierbar {}
 extension Bewertungsstufe: Identifizierbar {}
 extension Eintrag: Identifizierbar {}
+extension Mitarbeitsstunde: Identifizierbar {}
+extension Mitarbeitseintrag: Identifizierbar {}

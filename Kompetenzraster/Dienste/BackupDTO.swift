@@ -7,7 +7,9 @@ import Foundation
 /// Alle Beziehungen laufen über UUIDs in flachen Listen, damit der Import unabhängig von der
 /// Reihenfolge und wiederholbar ist.
 struct BackupDatei: Codable, Sendable {
-    static let aktuelleSchemaVersion = 1
+    /// 2: seit den Mitarbeitsstunden. Ältere Fassungen der App weisen neuere Dateien ab;
+    /// Sicherungen im Format 1 lassen sich weiterhin einspielen.
+    static let aktuelleSchemaVersion = 2
 
     var schemaVersion: Int = BackupDatei.aktuelleSchemaVersion
     var appVersion: String = ""
@@ -28,6 +30,8 @@ struct BackupZaehler: Codable, Sendable {
     var raster = 0
     var kompetenzen = 0
     var eintraege = 0
+    /// Seit Format 2; bei älteren Sicherungen nicht vorhanden.
+    var mitarbeitsstunden: Int?
 }
 
 struct BackupTresor: Codable, Sendable {
@@ -48,6 +52,10 @@ struct BackupDaten: Codable, Sendable {
     var kompetenzen: [KompetenzDTO] = []
     var eintraege: [EintragDTO] = []
     var einstellungen: EinstellungenDTO?
+    // Seit Format 2. Optional, weil die synthetisierte `Decodable` bei fehlenden Schlüsseln
+    // nicht auf Standardwerte zurückfällt – Sicherungen im Format 1 müssen lesbar bleiben.
+    var mitarbeitsstunden: [MitarbeitsstundeDTO]?
+    var mitarbeitseintraege: [MitarbeitseintragDTO]?
 }
 
 struct KlasseDTO: Codable, Sendable {
@@ -119,6 +127,27 @@ struct EintragDTO: Codable, Sendable {
     var schuelerID: UUID?
     var kompetenzID: UUID?
     var stufeID: UUID?
+}
+
+struct MitarbeitsstundeDTO: Codable, Sendable {
+    var id: UUID
+    var datum: Date
+    var fach: String
+    var thema: String
+    var erstelltAm: Date
+    var klasseID: UUID?
+}
+
+struct MitarbeitseintragDTO: Codable, Sendable {
+    var id: UUID
+    var arbeitsverhalten: Int?
+    var haeufigkeit: Int?
+    var qualitaet: Int?
+    var anwesend: Bool
+    var notiz: String
+    var geaendertAm: Date
+    var stundeID: UUID?
+    var schuelerID: UUID?
 }
 
 struct EinstellungenDTO: Codable, Sendable {

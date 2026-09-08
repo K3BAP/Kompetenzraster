@@ -11,6 +11,8 @@ enum Datenbestand {
         Bewertungsskala.self,
         Bewertungsstufe.self,
         Eintrag.self,
+        Mitarbeitsstunde.self,
+        Mitarbeitseintrag.self,
         AppEinstellungen.self,
     ]
 
@@ -43,6 +45,8 @@ extension ModelContext {
 
     /// Löscht sämtliche Inhalte – Grundlage für „Backup ersetzend importieren“.
     func alleDatenLoeschen() throws {
+        try delete(model: Mitarbeitseintrag.self)
+        try delete(model: Mitarbeitsstunde.self)
         try delete(model: Eintrag.self)
         try delete(model: Kompetenz.self)
         try delete(model: Kompetenzraster.self)

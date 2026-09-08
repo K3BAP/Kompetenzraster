@@ -52,8 +52,7 @@ struct SicherungEinstellungenView: View {
                     let zaehler = vorschau.zaehler
                     LabeledContent("Erstellt am",
                                    value: vorschau.exportiertAm.formatted(date: .abbreviated, time: .shortened))
-                    LabeledContent("Inhalt",
-                                   value: "\(zaehler.klassen) Klassen · \(zaehler.schueler) Kinder · \(zaehler.eintraege) Einträge")
+                    LabeledContent("Inhalt", value: inhalt(zaehler))
                     if vorschau.verschluesselt {
                         SecureField("Passwort der Sicherung", text: $sicherung.passwort)
                     }
@@ -109,6 +108,19 @@ struct SicherungEinstellungenView: View {
             meldung = nil
             if case .success(let url) = ergebnis { sicherung.lade(von: url) }
         }
+    }
+
+    /// Mitarbeitsstunden stehen erst in Sicherungen ab Format 2.
+    private func inhalt(_ zaehler: BackupZaehler) -> String {
+        var teile = [
+            "\(zaehler.klassen) Klassen",
+            "\(zaehler.schueler) Kinder",
+            "\(zaehler.eintraege) Einträge",
+        ]
+        if let stunden = zaehler.mitarbeitsstunden, stunden > 0 {
+            teile.append("\(stunden) Mitarbeitsstunden")
+        }
+        return teile.joined(separator: " · ")
     }
 
     private func bereiteExportVor() {

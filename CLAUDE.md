@@ -63,6 +63,24 @@ Zeile je Kompetenz, Spalte je Stufe, ein Klick auf die gesetzte Stufe nimmt sie 
 `RasterMatrixView` (Klassenüberblick, Kinder als Spalten). `Kompetenz.blattgruppen` gliedert die
 Zeilen des Bogens: eine Zwischenüberschrift nur dort, wo das Raster wirklich drei Ebenen hat.
 
+### Mitarbeit
+
+Eine `Mitarbeitsstunde` gehört zu **Klasse + Fach** (Freitext, nicht an ein Raster gebunden – in
+Sport gibt es Mitarbeit auch ohne Kompetenzraster). Je Stunde und Kind gibt es **genau einen**
+`Mitarbeitseintrag` mit drei Achsen (`Mitarbeitsachse`: Arbeitsverhalten, Häufigkeit, Qualität) zu
+je vier festen Stufen. Anders als `Bewertungsskala` ist diese Skala bewusst **nicht** konfigurierbar:
+Das Eintragen nach der Stunde muss in Sekunden gehen, und die Zahlen sollen über ein Schuljahr
+vergleichbar bleiben.
+
+Alle Änderungen laufen über `Mitarbeitserfassung`; ein Eintrag ohne Beobachtung, ohne Notiz und mit
+anwesendem Kind wird wieder gelöscht, sonst zählte die Quote leere Zeilen mit. `Mitarbeitsauswertung`
+rechnet: **abwesende Stunden und nicht beobachtete Achsen gehen weder in Mittelwert noch in die
+Quote ein** – dieselbe Regel wie bei den Kompetenzen. `Halbjahr` leitet den Zeitraum aus der
+Schuljahresbezeichnung ab (1.8.–31.1. bzw. 1.2.–31.7.).
+
+Mitarbeit fließt **nicht** in Kompetenzblume und `Auswertung`. Sie ist keine Lehrplankompetenz, und
+einzelne Stunden werden nicht benotet – gezeigt werden Mittelwerte und Verläufe, nicht Noten.
+
 `Auswertung` bildet Teilbaum-Mittelwerte für Blume und Matrix. Wichtig: **unbewertete Kompetenzen
 gehen nicht in den Mittelwert ein** — sie erscheinen als blasser Umriss, statt den Stand nach unten
 zu ziehen.
@@ -92,7 +110,9 @@ Verschlüsselung ist optional: AES-GCM, Schlüssel aus PBKDF2-SHA256. Zähler un
 im Klartext, damit die Vorschau vor der Passworteingabe etwas zeigen kann.
 
 Wird das Schema geändert, muss `BackupDatei.aktuelleSchemaVersion` mitziehen; der Import weist
-neuere Formate ab.
+neuere Formate ab. **Neue Listen in `BackupDaten` müssen optional sein** (`[...]?` mit `?? []` an
+der Auswertungsstelle): Die synthetisierte `Decodable` greift bei fehlenden Schlüsseln nicht auf
+Standardwerte zurück, ältere Sicherungen wären sonst nicht mehr lesbar.
 
 ### Mitgelieferte Kompetenzraster
 

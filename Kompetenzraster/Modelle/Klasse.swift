@@ -18,6 +18,9 @@ final class Klasse {
     /// Welche Raster in dieser Klasse verwendet werden (n:m, ohne Löschweitergabe).
     var raster: [Kompetenzraster] = []
 
+    @Relationship(deleteRule: .cascade, inverse: \Mitarbeitsstunde.klasse)
+    var mitarbeitsstunden: [Mitarbeitsstunde] = []
+
     init(
         id: UUID = UUID(),
         name: String = "",
@@ -36,6 +39,20 @@ final class Klasse {
         self.sortIndex = sortIndex
     }
 
+    /// Die Fächer, in denen bereits Mitarbeit festgehalten wurde, plus die der Raster.
+    var faecher: [String] {
+        let ausRastern = raster.map(\.fach)
+        let ausStunden = mitarbeitsstunden.map(\.fach)
+        return Set(ausRastern + ausStunden).filter { !$0.isEmpty }.sorted()
+    }
+
+    /// Alle Stunden eines Faches, jüngste zuerst.
+    func stunden(fach: String) -> [Mitarbeitsstunde] {
+        mitarbeitsstunden
+            .filter { $0.fach == fach }
+            .sorted { ($0.datum, $0.erstelltAm) > ($1.datum, $1.erstelltAm) }
+    }
+
     /// Nach Nachname, dann Vorname – die im Klassenbuch übliche Reihenfolge.
     var schuelerSortiert: [SchuelerIn] {
         schueler.sorted { links, rechts in
@@ -49,6 +66,11 @@ final class Klasse {
 /// Hilfen rund um die Schuljahresbezeichnung „2025/26“.
 enum Schuljahr {
     static var aktuell: String { bezeichnung(fuer: Date()) }
+
+    /// Das Jahr, in dem das Schuljahr „2025/26“ beginnt – hier 2025.
+    static func startjahr(aus bezeichnung: String) -> Int? {
+        Int(bezeichnung.prefix(while: \.isNumber))
+    }
 
     static func bezeichnung(fuer datum: Date, kalender: Calendar = .current) -> String {
         let teile = kalender.dateComponents([.year, .month], from: datum)

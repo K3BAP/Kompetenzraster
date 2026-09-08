@@ -9,6 +9,7 @@ struct KlasseDetailView: View {
         case schueler = "Schüler:innen"
         case erfassung = "Erfassung"
         case uebersicht = "Klassenüberblick"
+        case mitarbeit = "Mitarbeit"
         case blume = "Kompetenzblume"
         var id: String { rawValue }
     }
@@ -58,7 +59,8 @@ struct KlasseDetailView: View {
                 .labelsHidden()
                 .fixedSize()
 
-                if bereich != .schueler, zugeordneteRaster.count > 1 {
+                // Die Mitarbeit hängt am Fach, nicht am Raster – dort führt die Wahl in die Irre.
+                if bereich != .schueler, bereich != .mitarbeit, zugeordneteRaster.count > 1 {
                     Picker("Raster", selection: Binding(
                         get: { gewaehltesRaster?.id },
                         set: { gewaehltesRasterID = $0 }
@@ -90,6 +92,8 @@ struct KlasseDetailView: View {
             } else {
                 rasterFehltHinweis
             }
+        case .mitarbeit:
+            MitarbeitBereichView(klasse: klasse)
         case .blume:
             if let raster = gewaehltesRaster {
                 BlumeBereichView(klasse: klasse, raster: raster)

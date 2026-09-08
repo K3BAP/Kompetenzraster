@@ -228,13 +228,19 @@ private struct KompetenzZeile: View {
 
             ForEach(stufen) { stufe in
                 Ankreuzfeld(
-                    stufe: stufe,
+                    farbe: stufe.farbe,
                     gewaehlt: gesetzt?.id == stufe.id,
-                    breite: spaltenBreite
-                ) {
-                    setze(stufe, bereitsGesetzt: gesetzt?.id == stufe.id)
+                    breite: spaltenBreite,
+                    beschriftung: "\(kompetenz.titel) – \(stufe.name)",
+                    tippen: { setze(stufe, bereitsGesetzt: gesetzt?.id == stufe.id) }
+                ) { gewaehlt in
+                    BewertungsSymbol(
+                        quelle: stufe.symbol,
+                        farbe: stufe.farbe,
+                        groesse: gewaehlt ? 28 : 24,
+                        gedaempft: !gewaehlt
+                    )
                 }
-                .help("\(kompetenz.titel) – \(stufe.name)")
             }
 
             Button(action: notizOeffnen) {
@@ -261,40 +267,6 @@ private struct KompetenzZeile: View {
         withAnimation(.snappy(duration: 0.18)) {
             Erfassung.setze(bereitsGesetzt ? nil : stufe, fuer: kompetenz, schueler: schueler, in: kontext)
         }
-    }
-}
-
-/// Ein einzelnes Feld der Stufenspalte.
-private struct Ankreuzfeld: View {
-    let stufe: Bewertungsstufe
-    let gewaehlt: Bool
-    let breite: CGFloat
-    let tippen: () -> Void
-
-    @State private var ueberfahren = false
-
-    var body: some View {
-        Button(action: tippen) {
-            ZStack {
-                RoundedRectangle(cornerRadius: 8)
-                    .fill(gewaehlt ? stufe.farbe.opacity(0.18) : (ueberfahren ? stufe.farbe.opacity(0.09) : .clear))
-                RoundedRectangle(cornerRadius: 8)
-                    .strokeBorder(gewaehlt ? stufe.farbe : stufe.farbe.opacity(ueberfahren ? 0.45 : 0), lineWidth: 1.5)
-                BewertungsSymbol(
-                    quelle: stufe.symbol,
-                    farbe: stufe.farbe,
-                    groesse: gewaehlt ? 28 : 24,
-                    gedaempft: !gewaehlt
-                )
-            }
-            .frame(width: breite - 8, height: 34)
-            .frame(width: breite)
-            .contentShape(Rectangle())
-        }
-        .buttonStyle(.plain)
-        .onHover { ueberfahren = $0 }
-        .accessibilityLabel(stufe.name)
-        .accessibilityAddTraits(gewaehlt ? [.isSelected] : [])
     }
 }
 
