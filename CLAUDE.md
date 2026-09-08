@@ -58,6 +58,11 @@ Beim Verschieben schützt `Kompetenz.istVorfahrVon(_:)` vor Zyklen.
 `Erfassung.setze(_:fuer:schueler:in:)`; `nil` löscht. Wer den Eintrag direkt anlegt, bricht die
 Invariante. Ein Verlauf mehrerer datierter Einträge ist bewusst nicht Teil dieser Fassung.
 
+Zwei Ansichten schreiben dieselben Einträge: `SchuelerErfassungView` (der Bogen für ein Kind –
+Zeile je Kompetenz, Spalte je Stufe, ein Klick auf die gesetzte Stufe nimmt sie zurück) und
+`RasterMatrixView` (Klassenüberblick, Kinder als Spalten). `Kompetenz.blattgruppen` gliedert die
+Zeilen des Bogens: eine Zwischenüberschrift nur dort, wo das Raster wirklich drei Ebenen hat.
+
 `Auswertung` bildet Teilbaum-Mittelwerte für Blume und Matrix. Wichtig: **unbewertete Kompetenzen
 gehen nicht in den Mittelwert ein** — sie erscheinen als blasser Umriss, statt den Stand nach unten
 zu ziehen.

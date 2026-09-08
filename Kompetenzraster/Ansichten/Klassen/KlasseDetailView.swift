@@ -8,6 +8,7 @@ struct KlasseDetailView: View {
     private enum Bereich: String, CaseIterable, Identifiable {
         case schueler = "Schüler:innen"
         case erfassung = "Erfassung"
+        case uebersicht = "Klassenüberblick"
         case blume = "Kompetenzblume"
         var id: String { rawValue }
     }
@@ -78,6 +79,12 @@ struct KlasseDetailView: View {
         case .schueler:
             SchuelerListeView(klasse: klasse)
         case .erfassung:
+            if let raster = gewaehltesRaster {
+                SchuelerErfassungView(klasse: klasse, raster: raster)
+            } else {
+                rasterFehltHinweis
+            }
+        case .uebersicht:
             if let raster = gewaehltesRaster {
                 RasterMatrixView(klasse: klasse, raster: raster)
             } else {
