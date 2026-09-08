@@ -16,10 +16,13 @@ enum Datenbestand {
 
     static var schema: Schema { Schema(alleModelle) }
 
+    static let speichername = "Kompetenzraster"
+
     /// Der Container der App. `imArbeitsspeicher` wird von den Tests genutzt.
     static func container(imArbeitsspeicher: Bool = false) throws -> ModelContainer {
+        if !imArbeitsspeicher { Datenumzug.ausAlterSandbox() }
         let konfiguration = ModelConfiguration(
-            "Kompetenzraster",
+            speichername,
             schema: schema,
             isStoredInMemoryOnly: imArbeitsspeicher
         )

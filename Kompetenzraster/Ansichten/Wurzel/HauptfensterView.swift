@@ -18,15 +18,24 @@ struct HauptfensterView: View {
     @State private var vorlagenAuswahl = false
 
     @State private var pruefer = Aktualisierungspruefer.shared
+    @State private var installation = Selbstaktualisierung.shared
+
+    /// Der Streifen bleibt stehen, solange eine Aktualisierung läuft oder schiefging.
+    private var zeigtStreifen: Bool {
+        switch installation.phase {
+        case .fehler, .neustartNoetig: return true
+        default: return pruefer.zeigtStreifen || installation.laeuft
+        }
+    }
 
     var body: some View {
         VStack(spacing: 0) {
-            if pruefer.zeigtStreifen {
-                AktualisierungsHinweisView(pruefer: pruefer)
+            if zeigtStreifen {
+                AktualisierungsHinweisView(pruefer: pruefer, installation: installation)
             }
             fenster
         }
-        .animation(.snappy, value: pruefer.zeigtStreifen)
+        .animation(.snappy, value: zeigtStreifen)
     }
 
     private var fenster: some View {

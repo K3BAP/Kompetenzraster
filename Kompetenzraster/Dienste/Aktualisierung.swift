@@ -25,7 +25,12 @@ struct Versionsmanifest: Codable, Equatable, Sendable {
     var build: Int
     var veroeffentlichtAm: String?
     var download: String?
+    /// Prüfsumme des ZIPs, hexadezimal. Ohne sie wird nicht installiert.
+    var sha256: String?
+    var groesse: Int?
     var hinweise: String?
+
+    var downloadURL: URL? { download.flatMap(URL.init(string:)) }
 }
 
 /// Die eigene Fassung, wie sie in der Info.plist steht.

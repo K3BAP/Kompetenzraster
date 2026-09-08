@@ -2,13 +2,22 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<!--
+	Ohne App Sandbox, damit sich die App selbst aktualisieren kann.
+
+	Der Grund ist nicht Bequemlichkeit: Eine sandboxed App darf zwar mit einer
+	Ordnerfreigabe ihr eigenes Bundle ersetzen, aber das Quarantäne-Merkmal, das
+	die Sandbox dabei setzt, nicht wieder entfernen (removexattr scheitert mit
+	EPERM). Gatekeeper verweigert der nur ad-hoc signierten Kopie danach den
+	Start – die App hätte sich selbst unbrauchbar gemacht.
+
+	Mit einer Notarisierung über ein Apple-Entwicklerkonto ließe sich die Sandbox
+	wieder einschalten; siehe README.
+
+	Der Hardened Runtime bleibt aktiv, und die App verbindet sich weiterhin nur
+	mit GitHub, um nach Aktualisierungen zu sehen.
+	-->
 	<key>com.apple.security.app-sandbox</key>
-	<true/>
-	<key>com.apple.security.files.user-selected.read-write</key>
-	<true/>
-	<!-- Ausgehend, ausschließlich für die Update-Prüfung gegen GitHub.
-	     Es werden keine Daten gesendet, nur eine Versionsdatei geladen. -->
-	<key>com.apple.security.network.client</key>
-	<true/>
+	<false/>
 </dict>
 </plist>

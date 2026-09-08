@@ -56,6 +56,8 @@ Voraussetzungen: macOS 15 oder neuer, Xcode 16 oder neuer,
 - **Ersteinrichtung** mit drei Wegen: Sicherung einspielen, mit fertigen Rastern starten oder
   leer beginnen.
 - **App-Sperre** über Touch ID beziehungsweise Anmeldepasswort (optional).
+- **Selbst-Aktualisierung**: Ein Klick lädt die neue Fassung, prüft sie, ersetzt die App
+  und startet sie neu.
 
 ## Mitgelieferte Kompetenzraster
 
@@ -72,20 +74,52 @@ Die feingliedrigen Kompetenzerwartungen der Teilrahmenpläne sind bewusst nicht 
 Das Datenmodell trägt beliebige Tiefe, eigene Unterkompetenzen lassen sich also jederzeit
 darunter ergänzen.
 
+## Aktualisierung
+
+Höchstens einmal täglich lädt die App `latest.json` vom GitHub-Release und vergleicht die
+Build-Nummer. Gibt es etwas Neueres, erscheint ein Streifen über dem Fenster; ein Klick auf
+**Aktualisieren** erledigt den Rest.
+
+Vor dem Austausch wird jedes Mal geprüft:
+
+1. Geladen wird nur über HTTPS.
+2. Die **SHA-256-Prüfsumme** muss der entsprechen, die in `latest.json` steht.
+3. Das Paket muss dieselbe **Programmkennung** tragen wie die laufende App.
+4. Die enthaltene Fassung muss tatsächlich **neuer** sein — keine Rückstufung.
+5. Die **Signatur** des Pakets muss in sich stimmig sein.
+
+Erst danach wird die App ersetzt und neu gestartet. Klappt der Neustart nicht, meldet die App
+das und die neue Fassung läuft ab dem nächsten Start.
+
+Abschaltbar unter **Einstellungen → Sicherheit**. Ist die Prüfung aus, macht die App überhaupt
+keinen Netzwerkzugriff mehr.
+
 ## Datenschutz
 
-Die App ist sandboxed. Datenbank und Einstellungen liegen unter
-`~/Library/Containers/com.kompetenzraster.app/`. Schülerdaten verlassen den Mac nicht.
-
-Der **einzige** Netzwerkzugriff ist die Suche nach Aktualisierungen: höchstens einmal täglich
-wird `latest.json` vom GitHub-Release geladen und die Build-Nummer verglichen. Dabei wird nichts
-gesendet — keine Klassen, keine Namen, keine Einträge, keine Kennung. Findet sich etwas Neueres,
-erscheint ein Hinweis mit einem Knopf, der die Release-Seite im Browser öffnet; heruntergeladen
-und installiert wird nichts von selbst. Abschaltbar unter **Einstellungen → Sicherheit**; danach
-macht die App überhaupt keinen Netzwerkzugriff mehr.
+Schülerdaten verlassen den Mac nicht. Datenbank und Einstellungen liegen unter
+`~/Library/Application Support/Kompetenzraster.store`. Beim Abruf der Versionsdatei wird nichts
+gesendet — keine Klassen, keine Namen, keine Einträge, keine Kennung.
 
 Für Sicherungen, die weitergegeben oder auf einem Stick mitgenommen werden, gibt es die
 Passwortverschlüsselung.
+
+### Warum ohne App Sandbox
+
+Bis Version 1.0 lief die App in einer Sandbox. Das ließ sich mit der Selbst-Aktualisierung
+nicht vereinbaren: Eine sandboxed App darf zwar mit einer Ordnerfreigabe ihr eigenes Bundle
+ersetzen — das funktioniert —, aber das Quarantäne-Merkmal, das die Sandbox dabei setzt, nicht
+wieder entfernen; `removexattr` scheitert mit `EPERM`. Gatekeeper verweigert der nur ad-hoc
+signierten Kopie danach den Start, die App hätte sich also selbst unbrauchbar gemacht.
+
+Der Hardened Runtime bleibt aktiv. Wer die Sandbox zurückhaben will, braucht ein
+Apple-Entwicklerkonto: mit Developer-ID-Signatur und Notarisierung stört die Quarantäne nicht
+mehr, und `com.apple.security.app-sandbox` kann in
+[`Kompetenzraster.entitlements`](Kompetenzraster/Resources/Kompetenzraster.entitlements)
+wieder auf `true`.
+
+Beim ersten Start ohne Sandbox holt sich die App den Datenbestand einmalig aus dem alten
+Container (`~/Library/Containers/com.kompetenzraster.app/`) — siehe
+[`Datenumzug.swift`](Kompetenzraster/Modelle/Datenumzug.swift). Das Original bleibt liegen.
 
 ## Aufbau
 

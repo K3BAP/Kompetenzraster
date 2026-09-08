@@ -37,7 +37,7 @@ release: generate
 	@rm -rf "$(DIST_DIR)/$(PROJECT).app" "$(DIST_DIR)/$(PROJECT).zip" "$(DIST_DIR)/latest.json"
 	cp -R "$(RELEASE_APP)" "$(DIST_DIR)/$(PROJECT).app"
 	cd $(DIST_DIR) && ditto -c -k --sequesterRsrc --keepParent "$(PROJECT).app" "$(PROJECT).zip"
-	./scripts/make_manifest.sh "$(VERSION)" "$(BUILD_NUMBER)" "$(DIST_DIR)/latest.json"
+	./scripts/make_manifest.sh "$(VERSION)" "$(BUILD_NUMBER)" "$(DIST_DIR)/latest.json" "$(DIST_DIR)/$(PROJECT).zip"
 	@echo "release: $(DIST_DIR)/$(PROJECT).zip (Version $(VERSION), Build $(BUILD_NUMBER))"
 
 install: release
